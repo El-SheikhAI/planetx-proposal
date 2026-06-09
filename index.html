@@ -13,10 +13,8 @@
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body { font-family: 'Poppins', system-ui, sans-serif; color: var(--text); line-height: 1.7; background: #fafafa; }
   .page { max-width: 1000px; margin: 0 auto; background: var(--white); box-shadow: 0 0 40px rgba(0,0,0,0.08); }
-
-  /* ── Password Gate ── */
   #gate { position: fixed; inset: 0; background: linear-gradient(135deg, var(--dark) 0%, #55009B 60%, var(--primary) 100%); display: flex; align-items: center; justify-content: center; z-index: 9999; text-align: center; }
-  #gate .box { background: rgba(255,255,255,0.08); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.15); border-radius: 16px; padding: 50px 40px; max-width: 380px; }
+  #gate .box { background: rgba(255,255,255,0.08); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.15); border-radius: 16px; padding: 50px 40px; max-width: 380px; margin: 20px; }
   #gate h2 { color: white; font-size: 1.3em; margin-bottom: 6px; border: none; letter-spacing: 1px; }
   #gate p { color: rgba(255,255,255,0.6); font-size: 0.85em; margin-bottom: 20px; }
   #gate input { width: 100%; padding: 14px 18px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.1); color: white; font-size: 1.1em; text-align: center; letter-spacing: 6px; outline: none; font-family: 'Poppins', sans-serif; }
@@ -24,7 +22,6 @@
   #gate .err { color: #ff6b6b; font-size: 0.82em; margin-top: 10px; display: none; }
   #gate .logo { color: white; font-size: 0.85em; letter-spacing: 4px; opacity: 0.4; margin-bottom: 20px; }
   #content { display: none; }
-
   .cover { background: linear-gradient(135deg, var(--dark) 0%, #55009B 60%, var(--primary) 100%); color: white; padding: 80px 60px; text-align: center; position: relative; overflow: hidden; }
   .cover::before { content: ''; position: absolute; inset: 0; background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"); }
   .cover h1 { font-size: 2.8em; font-weight: 800; letter-spacing: 3px; margin-bottom: 10px; position: relative; }
@@ -33,18 +30,16 @@
   .cover .meta { font-size: 0.95em; opacity: 0.7; position: relative; line-height: 2; }
   .cover .logo-area { margin-bottom: 30px; position: relative; }
   .cover .logo-placeholder { display: inline-block; border: 2px solid rgba(255,255,255,0.3); padding: 15px 40px; font-size: 1.6em; font-weight: 700; letter-spacing: 5px; }
-
   section { padding: 50px 60px; }
   section:nth-child(even) { background: var(--gray); }
   h2 { font-size: 1.7em; color: var(--dark); border-bottom: 3px solid var(--primary); padding-bottom: 12px; margin-bottom: 30px; }
   h3 { font-size: 1.15em; color: var(--dark); margin: 25px 0 12px; }
-
-  table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 0.92em; }
+  .tbl-x { overflow-x: auto; -webkit-overflow-scrolling: touch; margin: 20px 0; }
+  table { width: 100%; border-collapse: collapse; min-width: 500px; font-size: 0.92em; }
   th, td { padding: 12px 16px; text-align: left; border-bottom: 1px solid #e0e0e0; }
   th { background: var(--dark); color: white; font-weight: 600; font-size: 0.85em; text-transform: uppercase; letter-spacing: 0.5px; }
   tr:hover td { background: #f8f0ff; }
   .price { font-weight: 700; color: var(--primary); white-space: nowrap; }
-
   .deliverable-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px 30px; }
   .deliverable-grid .item { background: var(--white); border-left: 4px solid var(--primary); padding: 14px 18px; border-radius: 0 6px 6px 0; }
   .deliverable-grid .item strong { display: block; color: var(--dark); margin-bottom: 4px; }
@@ -52,13 +47,11 @@
   .features { list-style: none; }
   .features li { padding: 8px 0 8px 24px; position: relative; }
   .features li::before { content: '✓'; position: absolute; left: 0; color: var(--primary); font-weight: bold; }
-
   .pricing-box { background: linear-gradient(135deg, var(--dark), #55009B); color: white; border-radius: 12px; padding: 40px; text-align: center; margin: 30px 0; }
   .pricing-box .total { font-size: 3.5em; font-weight: 800; }
   .pricing-box .total small { font-size: 0.5em; opacity: 0.7; }
   .pricing-box .note { font-size: 0.95em; opacity: 0.7; margin-top: 8px; }
-  .pricing-box .maintenance { background: rgba(255,255,255,0.1); border-radius: 8px; padding: 16px; margin-top: 20px; font-size: 0.95em; }
-
+  .pricing-box .maintenance { background: rgba(255,255,255,0.1); border-radius: 8px; padding: 16px; margin-top: 20px; font-size: 0.95em; line-height: 1.8; }
   .timeline { position: relative; padding-left: 30px; }
   .timeline::before { content: ''; position: absolute; left: 8px; top: 0; bottom: 0; width: 2px; background: var(--primary); }
   .timeline .phase { margin-bottom: 28px; position: relative; }
@@ -66,9 +59,7 @@
   .timeline .phase strong { display: block; color: var(--dark); }
   .timeline .phase span { font-size: 0.9em; color: #888; display: block; margin-top: 2px; }
   .timeline .phase .tasks { font-size: 0.82em; color: #999; margin-top: 4px; }
-
-  footer { background: var(--dark); color: #999; text-align: center; padding: 30px; font-size: 0.85em; }
-
+  footer { background: var(--dark); color: #999; text-align: center; padding: 30px; font-size: 0.85em; line-height: 1.7; }
   .scope-box { border: 2px solid var(--yes); border-radius: 8px; padding: 16px 20px; margin: 10px 0; background: #f0fdf4; }
   .scope-box.out { border-color: var(--no); background: #fef2f2; }
   .scope-box h4 { color: var(--dark); margin-bottom: 6px; }
@@ -76,224 +67,43 @@
   .badge-in { background: #d1fae5; color: #065f46; }
   .badge-out { background: #fee2e2; color: #991b1b; }
   .warning-callout { background: #fffbeb; border-left: 4px solid #f59e0b; padding: 14px 18px; margin: 16px 0; border-radius: 0 6px 6px 0; font-size: 0.9em; }
-
+  .sig-table { width: 100%; border-collapse: collapse; margin-top: 30px; min-width: auto; }
+  .sig-table td { width: 50%; padding: 20px; border: 1px solid #e0e0e0; vertical-align: top; line-height: 2.2; }
   @media (max-width: 768px) {
-    .cover { padding: 50px 30px; } .cover h1 { font-size: 1.8em; }
-    section { padding: 30px 25px; } .deliverable-grid { grid-template-columns: 1fr; }
-    .pricing-box .total { font-size: 2.5em; }
+    .cover { padding: 50px 30px; } .cover h1 { font-size: 1.8em; } .cover .logo-placeholder { padding: 12px 25px; font-size: 1.2em; } .cover .subtitle { font-size: 1em; } .cover .meta { font-size: 0.82em; }
+    section { padding: 30px 20px; }
+    h2 { font-size: 1.3em; border-bottom-width: 2px; margin-bottom: 20px; }
+    h3 { font-size: 1em; margin: 18px 0 10px; }
+    .deliverable-grid { grid-template-columns: 1fr; gap: 10px; }
+    .deliverable-grid .item { padding: 12px 14px; } .deliverable-grid .item strong { font-size: 0.95em; } .deliverable-grid .item span { font-size: 0.82em; }
+    .pricing-box { padding: 28px 20px; } .pricing-box .total { font-size: 2.2em; } .pricing-box .maintenance { font-size: 0.85em; padding: 12px; }
+    .timeline { padding-left: 22px; } .timeline::before { left: 6px; } .timeline .phase::before { left: -19px; width: 11px; height: 11px; top: 5px; } .timeline .phase { margin-bottom: 20px; } .timeline .phase strong { font-size: 0.92em; } .timeline .phase span { font-size: 0.8em; } .timeline .phase .tasks { font-size: 0.76em; }
+    table { min-width: 400px; } th, td { padding: 8px 10px; font-size: 0.85em; }
+    .sig-table td { display: block; width: 100%; }
+    footer { padding: 20px 15px; font-size: 0.75em; }
+    .scope-box { padding: 12px 14px; } .badge { font-size: 0.7em; padding: 2px 8px; }
+    #gate .box { padding: 35px 25px; } #gate h2 { font-size: 1.1em; } #gate input { padding: 12px 14px; font-size: 1em; }
   }
-  @media print { body { background: white; } .page { box-shadow: none; max-width: 100%; } section { break-inside: avoid; } }
+  @media print { body { background: white; } .page { box-shadow: none; max-width: 100%; } section { break-inside: avoid; } #gate { display: none; } #content { display: block !important; } }
 </style>
 </head>
 <body>
-
-<!-- ═══ PASSWORD GATE ═══ -->
-<div id="gate">
-  <div class="box">
-    <div class="logo">SECURE PROPOSAL</div>
-    <h2>Enter Passcode</h2>
-    <p>This document contains confidential information</p>
-    <input type="password" id="pw" placeholder="••••" maxlength="20" autofocus>
-    <div class="err" id="err">Incorrect passcode</div>
-  </div>
-</div>
-
-<!-- ═══ CONTENT ═══ -->
+<div id="gate"><div class="box"><div class="logo">SECURE PROPOSAL</div><h2>Enter Passcode</h2><p>This document contains confidential information</p><input type="password" id="pw" placeholder="••••" maxlength="20" autofocus><div class="err" id="err">Incorrect passcode</div></div></div>
 <div id="content">
 <div class="page">
-<div class="cover">
-  <div class="logo-area"><div class="logo-placeholder">NODA<span style="color:var(--accent)">TX</span></div></div>
-  <h1>Odoo ⭢ ERPNext<br><span>Migration Proposal</span></h1>
-  <p class="subtitle">Seamless transition from Odoo Community to ERPNext — Accounting, Procurement, Inventory &amp; Sales</p>
-  <p class="meta">Prepared for: <strong>PlanetX</strong><br>Date: <strong>June 2026</strong><br>Prepared by: <strong>Nodatx</strong><br>Document Ref: <strong>PX-ERP-MIG-2026-001</strong></p>
-</div>
-
-<section>
-  <h2>1. Executive Summary</h2>
-  <p>PlanetX currently operates on <strong>Odoo Community Edition</strong> with 72 custom modules. As your Odoo subscription reaches its final year, Nodatx proposes a focused, high-impact migration to <strong>ERPNext</strong> — the world's leading open-source ERP — covering your core business operations across Accounting, Procurement, Inventory, Sales, and CRM.</p>
-  <p style="margin-top:12px;">This proposal reflects a <strong>strategically scoped migration</strong>. After thorough technical analysis, we have mutually agreed to exclude the construction and tender management modules from this phase, as these require a level of custom development that is better addressed as a dedicated Phase 2 engagement. Similarly, payroll and attendance engine customization is deferred to allow faster go-live on the core financial and operational modules.</p>
-  <p style="margin-top:12px;"><strong>What you get:</strong> A fully operational ERPNext system with all your historical accounting data, open transactions, inventory, procurement workflows, and sales operations — delivered in approximately 16 weeks (4 months).</p>
-  <div class="scope-box" style="margin-top:20px;"><h4><span class="badge badge-in">IN SCOPE</span> &nbsp; Accounting · Procurement · Inventory · Sales · CRM · Security · Reports</h4></div>
-  <div class="scope-box out"><h4><span class="badge badge-out">DEFERRED</span> &nbsp; Construction · Tender · Payroll Engine · Attendance Engine · BOM Explosion on SO · Guarantee Letters</h4></div>
-</section>
-
-<section>
-  <h2>2. Scope of Work</h2>
-  <p>This proposal covers the full migration of <strong>45 Odoo modules</strong> across six functional areas. The remaining 27 modules are explicitly excluded from this phase and documented for future engagement.</p>
-  <h3>2.1 — Core Deliverables</h3>
-  <div class="deliverable-grid">
-    <div class="item"><strong>1. ERPNext System Setup</strong><span>Full ERPNext v16 installation, Frappe framework configuration, production environment with backup strategy, SSL, and email integration.</span></div>
-    <div class="item"><strong>2. Chart of Accounts Migration</strong><span>Complete redesign and migration of your Odoo COA to ERPNext root-type hierarchy. All accounts mapped, verified, and balanced.</span></div>
-    <div class="item"><strong>3. Master Data Migration</strong><span>Customers, suppliers, products (with variants and UoM mapping), employees, users, warehouses, price lists, and tax templates.</span></div>
-    <div class="item"><strong>4. Accounting Core Migration</strong><span>Full GL/AR/AP migration. All open invoices, open payment entries, unreconciled items. Trial balance validated against Odoo source.</span></div>
-    <div class="item"><strong>5. Cheque Management System</strong><span>Post-dated cheque lifecycle — receive, issue, deposit, clearing, bounce, return. Built on ERPNext marketplace app with custom treasury feed.</span></div>
-    <div class="item"><strong>6. Procurement &amp; Inventory</strong><span>Purchase requests, POs (dual discount), stock opening balance, inter-warehouse transfers, warehouse access restrictions.</span></div>
-    <div class="item"><strong>7. Sales Operations</strong><span>Sales orders (total-level discount), per-line delivery location, user-level pricelist filtering, custom invoice print formats.</span></div>
-    <div class="item"><strong>8. CRM &amp; Access Control</strong><span>CRM lead management, opportunity tracking, record-level access, field-level permissions, sales team restrictions.</span></div>
-    <div class="item"><strong>9. Custom Reports &amp; Print Formats</strong><span>Cash flow, budget vs actual, ledgers, payment/receipt vouchers, PO/RFQ formats, invoice templates. All XLSX-exportable.</span></div>
-    <div class="item"><strong>10. Data Validation &amp; Go-Live</strong><span>Trial balance reconciliation, AR/AP aging match, stock valuation match, UAT, 50+ user training, parallel run, go-live support.</span></div>
-  </div>
-  <h3>2.2 — Additional Inclusions</h3>
-  <ul class="features">
-    <li>Petty cash request → approval → payment → settlement workflow</li>
-    <li>Purchase order dual discount (percentage + fixed amount) computation</li>
-    <li>Sales order multi-step approval workflow</li>
-    <li>Inter-warehouse transfer with transit location and approval</li>
-    <li>24 custom access rights reconfigured as ERPNext roles</li>
-    <li>XLSX report engine (migrated from Odoo OCA to Frappe xlsxutils)</li>
-    <li>Cash flow dashboard and journal balance kanban views</li>
-    <li>Employee loan management (application, approval, installment, payslip)</li>
-    <li>HR custody tracking (company assets assigned to employees)</li>
-    <li>Employee age auto-calculation and contract end-date notifications</li>
-    <li>All Arabic-language data preserved with proper Unicode handling</li>
-  </ul>
-</section>
-
-<section>
-  <h2>2.3 — Explicitly Out of Scope (Phase 1)</h2>
-  <p>The following modules are deferred to a future Phase 2 engagement or remain on the Odoo system.</p>
-  <div class="scope-box out" style="margin-top:16px;"><h4>Deferred Modules (27)</h4></div>
-  <table>
-    <tr><th>Category</th><th>Modules</th><th>Reason</th></tr>
-    <tr><td><strong>Construction Management</strong></td><td>master_data_construction, new_construction, ms_construction, engineer_template_*, update_construction_invoice, external_costs, contract_allowances, stock_analytic_distribution_item</td><td>Requires custom Frappe construction app. Complex domain logic. Phase 2.</td></tr>
-    <tr><td><strong>Tender Management</strong></td><td>tender, tender_contract, alm_tender_custom, tender_crm, access_right_tender_cons</td><td>Zero ERPNext ecosystem support. Full custom build required.</td></tr>
-    <tr><td><strong>Payroll Engine</strong></td><td>Add_Rule_Category, bounce_v14_e, deduction_v14_e, salary_report, ent_loan_accounting, ent_hr_payroll_extension</td><td>ERPNext has strong native payroll. Custom modules need salary component redesign.</td></tr>
-    <tr><td><strong>Attendance Engine</strong></td><td>rm_hr_attendance_sheet, surgi_attendance_sheet, rm_hr_attendance_sheet_custom, attendance_sheet_batch, hr_attendance_zktecho</td><td>Custom attendance sheets with penalty/overtime engine require dedicated build.</td></tr>
-    <tr><td><strong>Other Deferred</strong></td><td>sale_order_custmize (BOM), uc_guarantee_letters, quotation_commercial_offer (full)</td><td>BOM explosion: unique SO logic. Guarantee letters: standalone app. Commercial offers: basic included.</td></tr>
-  </table>
-</section>
-
-<section>
-  <h2>3. Technology &amp; Tools</h2>
-  <table>
-    <tr><th>Category</th><th>Tool / Technology</th><th>Purpose</th></tr>
-    <tr><td>ERP Platform</td><td>ERPNext v16</td><td>Core ERP — accounting, procurement, inventory, sales, CRM</td></tr>
-    <tr><td>Framework</td><td>Frappe Framework v16</td><td>DocType engine, workflow engine, REST API, permission system</td></tr>
-    <tr><td>Database</td><td>MariaDB 10.6+</td><td>ERPNext backend (migrated from Odoo PostgreSQL)</td></tr>
-    <tr><td>Cheque Management</td><td>PDC Cheque Management (Frappe Marketplace)</td><td>Enterprise post-dated cheque lifecycle management</td></tr>
-    <tr><td>Hosting</td><td>Frappe Cloud or self-hosted Linux</td><td>Production + staging + development environments</td></tr>
-    <tr><td>ETL / Data Migration</td><td>Python (pandas, frappe.client API)</td><td>Odoo PostgreSQL → ERPNext MariaDB transformation</td></tr>
-    <tr><td>Reporting</td><td>Frappe Script Reports + xlsxutils</td><td>Custom reports and Excel exports</td></tr>
-    <tr><td>Print Formats</td><td>Frappe Jinja/HTML Print Formats</td><td>Payment vouchers, PO/RFQ, invoice templates</td></tr>
-  </table>
-</section>
-
-<section>
-  <h2>4. Project Timeline</h2>
-  <div class="timeline">
-    <div class="phase"><strong>Week 1–3: Foundation</strong><span>Estimated completion: End of Week 3</span><div class="tasks">ERPNext server setup · COA redesign · User & role design · Master data migration · Print format setup</div></div>
-    <div class="phase"><strong>Week 4–7: Accounting Core</strong><span>Estimated completion: End of Week 7</span><div class="tasks">GL/AR/AP migration · Open invoices · Open payments · Bank reconciliation · Cheque management · Petty cash · Cash flow & budget reports · Trial balance validation</div></div>
-    <div class="phase"><strong>Week 8–11: Procurement, Inventory &amp; Sales</strong><span>Estimated completion: End of Week 11</span><div class="tasks">Purchase orders · Stock opening · Warehouse setup · Inter-transfer · Material requests · Sales orders · Discount engine · Pricelists · CRM · Invoice reports</div></div>
-    <div class="phase"><strong>Week 12–14: Testing, Training &amp; Parallel Run</strong><span>Estimated completion: End of Week 14</span><div class="tasks">Full integration testing · Trial balance reconciliation · AR/AP aging match · Stock valuation match · UAT sessions · User training (50+ users) · Parallel run (2 weeks)</div></div>
-    <div class="phase"><strong>Week 15–16: Go-Live &amp; Handover</strong><span>Estimated completion: End of Week 16</span><div class="tasks">Production go-live · Final data sync · Emergency support · Handover documentation · Post-go-live monitoring · Bug-fix period (2 weeks) · Knowledge transfer</div></div>
-  </div>
-  <p style="margin-top:20px; font-size:0.95em; color:#888;"><strong>Total duration:</strong> <strong>16 weeks (4 months)</strong> from project kickoff and receipt of all required client materials.</p>
-  <div class="warning-callout"><strong>Critical dependency:</strong> This timeline assumes PlanetX provides a <strong>dedicated point of contact</strong> for UAT testing during development (Weeks 4–14), and that all required materials are provided within the first week. Client-side delays extend the timeline proportionally.</div>
-</section>
-
-<section>
-  <h2>5. Investment</h2>
-  <table>
-    <tr><th>Deliverable</th><th style="text-align:right">Cost (EGP)</th></tr>
-    <tr><td>ERPNext System Setup &amp; COA Migration</td><td class="price">60,000</td></tr>
-    <tr><td>Master Data Migration</td><td class="price">70,000</td></tr>
-    <tr><td>Accounting Core (GL/AR/AP, invoices, payments, bank reconciliation)</td><td class="price">80,000</td></tr>
-    <tr><td>Cheque Management System</td><td class="price">55,000</td></tr>
-    <tr><td>Procurement &amp; Inventory</td><td class="price">65,000</td></tr>
-    <tr><td>Sales Operations (discount, price lists, approval workflow, CRM, reports)</td><td class="price">60,000</td></tr>
-    <tr><td>Access Control &amp; Security Configuration</td><td class="price">30,000</td></tr>
-    <tr><td>Custom Reports &amp; Print Formats</td><td class="price">35,000</td></tr>
-    <tr><td>Testing, UAT, User Training &amp; Go-Live Support</td><td class="price">45,000</td></tr>
-  </table>
-  <div class="pricing-box">
-    <div class="total"><small>EGP</small> 500,000</div>
-    <div class="note">Fixed-price — inclusive of all deliverables listed above. No hidden fees.</div>
-    <div class="maintenance"><strong>Post Go-Live Support (optional add-on)</strong><br><br>Monthly retainer: <strong>20,000 EGP/month</strong> (minimum 3 months)<br>Includes: bug fixes, minor adjustments, performance monitoring, user support, security updates.<br>Scope changes beyond Phase 1 billed at <strong>1,200 EGP/hour</strong>.</div>
-  </div>
-</section>
-
-<section>
-  <h2>6. Payment Terms</h2>
-  <table>
-    <tr><th>Milestone</th><th style="text-align:right">Percentage</th><th style="text-align:right">Amount (EGP)</th></tr>
-    <tr><td><strong>Project Kickoff</strong> — Upon contract signing and receipt of database access</td><td style="text-align:right">30%</td><td class="price">150,000</td></tr>
-    <tr><td><strong>Mid-Project Delivery</strong> — Accounting core + data migration complete (Week 7)</td><td style="text-align:right">35%</td><td class="price">175,000</td></tr>
-    <tr><td><strong>Final Delivery</strong> — All phases complete, UAT signed off, go-live executed</td><td style="text-align:right">35%</td><td class="price">175,000</td></tr>
-  </table>
-  <table style="margin-top:10px;"><tr><td style="border:none;padding-left:0;"><strong>Payment method:</strong> Bank transfer within 7 business days of milestone invoice</td></tr></table>
-</section>
-
-<section>
-  <h2>7. What We Need From PlanetX</h2>
-  <ul class="features">
-    <li>Full Odoo PostgreSQL database access (read-only credentials sufficient)</li>
-    <li>List of all 72 Odoo modules with confirmation of actively used vs. dormant</li>
-    <li>Current Odoo server access for reference during migration (read-only UI)</li>
-    <li>Chart of Accounts — desired structure, planned changes, auditor requirements</li>
-    <li>List of all users with departments, roles, and access level requirements</li>
-    <li>Sample printed documents for Print Format reference</li>
-    <li>Designated UAT lead (1–2 hours/day, Weeks 4–14)</li>
-    <li>Tax documentation — templates, rates, account mappings, ETA requirements</li>
-    <li>Server/hosting decision — Frappe Cloud or self-hosted Linux server</li>
-    <li>Domain/DNS access for production ERPNext URL configuration</li>
-  </ul>
-</section>
-
-<section>
-  <h2>8. Terms &amp; Conditions</h2>
-  <ul class="features">
-    <li>This proposal is valid for <strong>30 days</strong> from the date of issuance (June 2026).</li>
-    <li>The scope of work is limited to deliverables explicitly listed in Section 2. Any work outside this scope requires a separate change request.</li>
-    <li>Construction, tender, payroll engine, attendance engine, BOM explosion, and bank guarantee letters are <strong>explicitly excluded</strong> from Phase 1 (Section 2.3).</li>
-    <li>The 16-week (4-month) timeline is an estimate based on prompt client material provision (Section 7). Client-side delays extend the timeline proportionally.</li>
-    <li>Data migration is performed on a best-effort basis. Nodatx guarantees trial balance match, AR/AP aging match, and stock valuation match at go-live. Historical closed-period data is migrated at summary level.</li>
-    <li>Post-go-live bug fixes related to delivered scope are covered at no cost for 2 weeks after go-live. Thereafter, support is governed by the retainer or billed hourly.</li>
-    <li>Third-party marketplace app licenses (e.g., PDC Cheque Management) are the responsibility of PlanetX. Nodatx facilitates procurement and configuration; licensing costs are separate.</li>
-    <li>Both parties agree to a <strong>scope freeze</strong> during the 16-week delivery period. New feature requests will be documented for Phase 2.</li>
-    <li>Either party may terminate with 14 days written notice. Upon termination, Nodatx delivers all completed work. Payment is due for all completed milestones.</li>
-    <li>Nodatx retains IP rights to any custom Frappe apps developed. PlanetX receives a perpetual, royalty-free license to use them.</li>
-    <li>Confidentiality: Nodatx treats all PlanetX business data as confidential. No data shared with third parties.</li>
-    <li>Force majeure: Neither party is liable for delays caused by circumstances beyond reasonable control.</li>
-  </ul>
-</section>
-
-<section style="background: #fefefe;">
-  <h2>9. Acceptance</h2>
-  <p>This proposal, when signed below, constitutes a binding agreement for the services described herein.</p>
-  <table style="margin-top:30px;">
-    <tr><td style="width:50%; padding:20px; border:1px solid #e0e0e0; vertical-align:top;"><strong>PlanetX (Client)</strong><br><br>Signature: ______________________________<br><br>Name: ________________________________<br><br>Title: _________________________________<br><br>Date: _________________________________<br><br>Company Stamp:</td><td style="width:50%; padding:20px; border:1px solid #e0e0e0; vertical-align:top;"><strong>Nodatx (Service Provider)</strong><br><br>Signature: ______________________________<br><br>Name: ________________________________<br><br>Title: _________________________________<br><br>Date: _________________________________</td></tr>
-  </table>
-</section>
-
+<div class="cover"><div class="logo-area"><div class="logo-placeholder">NODA<span style="color:var(--accent)">TX</span></div></div><h1>Odoo → ERPNext<br><span>Migration Proposal</span></h1><p class="subtitle">Seamless transition from Odoo Community to ERPNext — Accounting, Procurement, Inventory &amp; Sales</p><p class="meta">Prepared for: <strong>PlanetX</strong><br>Date: <strong>June 2026</strong><br>Prepared by: <strong>Nodatx</strong><br>Document Ref: <strong>PX-ERP-MIG-2026-001</strong></p></div>
+<section><h2>1. Executive Summary</h2><p>PlanetX currently operates on <strong>Odoo Community Edition</strong> with 72 custom modules. As your Odoo subscription reaches its final year, Nodatx proposes a focused, high-impact migration to <strong>ERPNext</strong> — the world's leading open-source ERP — covering your core business operations across Accounting, Procurement, Inventory, Sales, and CRM.</p><p style="margin-top:12px;">This proposal reflects a <strong>strategically scoped migration</strong>. After thorough technical analysis, we have mutually agreed to exclude the construction and tender management modules from this phase, as these require a level of custom development that is better addressed as a dedicated Phase 2 engagement. Similarly, payroll and attendance engine customization is deferred to allow faster go-live on the core financial and operational modules.</p><p style="margin-top:12px;"><strong>What you get:</strong> A fully operational ERPNext system with all your historical accounting data, open transactions, inventory, procurement workflows, and sales operations — delivered in approximately 16 weeks (4 months).</p><div class="scope-box" style="margin-top:20px;"><h4><span class="badge badge-in">IN SCOPE</span> &nbsp; Accounting · Procurement · Inventory · Sales · CRM · Security · Reports</h4></div><div class="scope-box out"><h4><span class="badge badge-out">DEFERRED</span> &nbsp; Construction · Tender · Payroll Engine · Attendance Engine · BOM Explosion on SO · Guarantee Letters</h4></div></section>
+<section><h2>2. Scope of Work</h2><p>This proposal covers the full migration of <strong>45 Odoo modules</strong> across six functional areas. The remaining 27 modules are explicitly excluded from this phase and documented for future engagement.</p><h3>2.1 — Core Deliverables</h3><div class="deliverable-grid"><div class="item"><strong>1. ERPNext System Setup</strong><span>Full ERPNext v16 installation, Frappe framework configuration, production environment with backup strategy, SSL, and email integration.</span></div><div class="item"><strong>2. Chart of Accounts Migration</strong><span>Complete redesign and migration of your Odoo COA to ERPNext root-type hierarchy. All accounts mapped, verified, and balanced.</span></div><div class="item"><strong>3. Master Data Migration</strong><span>Customers, suppliers, products (with variants and UoM mapping), employees, users, warehouses, price lists, and tax templates.</span></div><div class="item"><strong>4. Accounting Core Migration</strong><span>Full GL/AR/AP migration. All open invoices, open payment entries, unreconciled items. Trial balance validated against Odoo source.</span></div><div class="item"><strong>5. Cheque Management System</strong><span>Post-dated cheque lifecycle — receive, issue, deposit, clearing, bounce, return. Built on ERPNext marketplace app with custom treasury feed.</span></div><div class="item"><strong>6. Procurement &amp; Inventory</strong><span>Purchase requests, POs (dual discount), stock opening balance, inter-warehouse transfers, warehouse access restrictions.</span></div><div class="item"><strong>7. Sales Operations</strong><span>Sales orders (total-level discount), per-line delivery location, user-level pricelist filtering, custom invoice print formats.</span></div><div class="item"><strong>8. CRM &amp; Access Control</strong><span>CRM lead management, opportunity tracking, record-level access, field-level permissions, sales team restrictions.</span></div><div class="item"><strong>9. Custom Reports &amp; Print Formats</strong><span>Cash flow, budget vs actual, ledgers, payment/receipt vouchers, PO/RFQ formats, invoice templates. All XLSX-exportable.</span></div><div class="item"><strong>10. Data Validation &amp; Go-Live</strong><span>Trial balance reconciliation, AR/AP aging match, stock valuation match, UAT, 50+ user training, parallel run, go-live support.</span></div></div><h3>2.2 — Additional Inclusions</h3><ul class="features"><li>Petty cash request → approval → payment → settlement workflow</li><li>Purchase order dual discount (percentage + fixed amount) computation</li><li>Sales order multi-step approval workflow</li><li>Inter-warehouse transfer with transit location and approval</li><li>24 custom access rights reconfigured as ERPNext roles</li><li>XLSX report engine (migrated from Odoo OCA to Frappe xlsxutils)</li><li>Cash flow dashboard and journal balance kanban views</li><li>Employee loan management (application, approval, installment, payslip)</li><li>HR custody tracking (company assets assigned to employees)</li><li>Employee age auto-calculation and contract end-date notifications</li><li>All Arabic-language data preserved with proper Unicode handling</li></ul></section>
+<section><h2>2.3 — Explicitly Out of Scope (Phase 1)</h2><p>The following modules are deferred to a future Phase 2 engagement or remain on the Odoo system.</p><div class="scope-box out" style="margin-top:16px;"><h4>Deferred Modules (27)</h4></div><div class="tbl-x"><table><tr><th>Category</th><th>Modules</th><th>Reason</th></tr><tr><td><strong>Construction Management</strong></td><td>master_data_construction, new_construction, ms_construction, engineer_template_*, update_construction_invoice, external_costs, contract_allowances, stock_analytic_distribution_item</td><td>Requires custom Frappe construction app. Complex domain logic. Phase 2.</td></tr><tr><td><strong>Tender Management</strong></td><td>tender, tender_contract, alm_tender_custom, tender_crm, access_right_tender_cons</td><td>Zero ERPNext ecosystem support. Full custom build required.</td></tr><tr><td><strong>Payroll Engine</strong></td><td>Add_Rule_Category, bounce_v14_e, deduction_v14_e, salary_report, ent_loan_accounting, ent_hr_payroll_extension</td><td>ERPNext has strong native payroll. Custom modules need salary component redesign.</td></tr><tr><td><strong>Attendance Engine</strong></td><td>rm_hr_attendance_sheet, surgi_attendance_sheet, rm_hr_attendance_sheet_custom, attendance_sheet_batch, hr_attendance_zktecho</td><td>Custom attendance sheets with penalty/overtime engine require dedicated build.</td></tr><tr><td><strong>Other Deferred</strong></td><td>sale_order_custmize (BOM), uc_guarantee_letters, quotation_commercial_offer (full)</td><td>BOM explosion: unique SO logic. Guarantee letters: standalone app. Commercial offers: basic included.</td></tr></table></div></section>
+<section><h2>3. Technology &amp; Tools</h2><div class="tbl-x"><table><tr><th>Category</th><th>Tool / Technology</th><th>Purpose</th></tr><tr><td>ERP Platform</td><td>ERPNext v16</td><td>Core ERP — accounting, procurement, inventory, sales, CRM</td></tr><tr><td>Framework</td><td>Frappe Framework v16</td><td>DocType engine, workflow engine, REST API, permission system</td></tr><tr><td>Database</td><td>MariaDB 10.6+</td><td>ERPNext backend (migrated from Odoo PostgreSQL)</td></tr><tr><td>Cheque Management</td><td>PDC Cheque Management (Frappe Marketplace)</td><td>Enterprise post-dated cheque lifecycle management</td></tr><tr><td>Hosting</td><td>Frappe Cloud or self-hosted Linux</td><td>Production + staging + development environments</td></tr><tr><td>ETL / Data Migration</td><td>Python (pandas, frappe.client API)</td><td>Odoo PostgreSQL → ERPNext MariaDB transformation</td></tr><tr><td>Reporting</td><td>Frappe Script Reports + xlsxutils</td><td>Custom reports and Excel exports</td></tr><tr><td>Print Formats</td><td>Frappe Jinja/HTML Print Formats</td><td>Payment vouchers, PO/RFQ, invoice templates</td></tr></table></div></section>
+<section><h2>4. Project Timeline</h2><div class="timeline"><div class="phase"><strong>Week 1–3: Foundation</strong><span>Estimated completion: End of Week 3</span><div class="tasks">ERPNext server setup · COA redesign · User & role design · Master data migration · Print format setup</div></div><div class="phase"><strong>Week 4–7: Accounting Core</strong><span>Estimated completion: End of Week 7</span><div class="tasks">GL/AR/AP migration · Open invoices · Open payments · Bank reconciliation · Cheque management · Petty cash · Cash flow & budget reports · Trial balance validation</div></div><div class="phase"><strong>Week 8–11: Procurement, Inventory &amp; Sales</strong><span>Estimated completion: End of Week 11</span><div class="tasks">Purchase orders · Stock opening · Warehouse setup · Inter-transfer · Material requests · Sales orders · Discount engine · Pricelists · CRM · Invoice reports</div></div><div class="phase"><strong>Week 12–14: Testing, Training &amp; Parallel Run</strong><span>Estimated completion: End of Week 14</span><div class="tasks">Full integration testing · Trial balance reconciliation · AR/AP aging match · Stock valuation match · UAT sessions · User training (50+ users) · Parallel run (2 weeks)</div></div><div class="phase"><strong>Week 15–16: Go-Live &amp; Handover</strong><span>Estimated completion: End of Week 16</span><div class="tasks">Production go-live · Final data sync · Emergency support · Handover documentation · Post-go-live monitoring · Bug-fix period (2 weeks) · Knowledge transfer</div></div></div><p style="margin-top:20px; font-size:0.95em; color:#888;"><strong>Total duration:</strong> <strong>16 weeks (4 months)</strong> from project kickoff and receipt of all required client materials.</p><div class="warning-callout"><strong>Critical dependency:</strong> This timeline assumes PlanetX provides a <strong>dedicated point of contact</strong> for UAT testing during development (Weeks 4–14), and that all required materials are provided within the first week. Client-side delays extend the timeline proportionally.</div></section>
+<section><h2>5. Investment</h2><div class="tbl-x"><table><tr><th>Deliverable</th><th style="text-align:right">Cost (EGP)</th></tr><tr><td>ERPNext System Setup &amp; COA Migration</td><td class="price">60,000</td></tr><tr><td>Master Data Migration</td><td class="price">70,000</td></tr><tr><td>Accounting Core (GL/AR/AP, invoices, payments, bank reconciliation)</td><td class="price">80,000</td></tr><tr><td>Cheque Management System</td><td class="price">55,000</td></tr><tr><td>Procurement &amp; Inventory</td><td class="price">65,000</td></tr><tr><td>Sales Operations (discount, price lists, approval workflow, CRM, reports)</td><td class="price">60,000</td></tr><tr><td>Access Control &amp; Security Configuration</td><td class="price">30,000</td></tr><tr><td>Custom Reports &amp; Print Formats</td><td class="price">35,000</td></tr><tr><td>Testing, UAT, User Training &amp; Go-Live Support</td><td class="price">45,000</td></tr></table></div><div class="pricing-box"><div class="total"><small>EGP</small> 500,000</div><div class="note">Fixed-price — inclusive of all deliverables listed above. No hidden fees.</div><div class="maintenance"><strong>Post Go-Live Support (optional add-on)</strong><br><br>Monthly retainer: <strong>20,000 EGP/month</strong> (minimum 3 months)<br>Includes: bug fixes, minor adjustments, performance monitoring, user support, security updates.<br>Scope changes beyond Phase 1 billed at <strong>1,200 EGP/hour</strong>.</div></div></section>
+<section><h2>6. Payment Terms</h2><div class="tbl-x"><table><tr><th>Milestone</th><th style="text-align:right">Percentage</th><th style="text-align:right">Amount (EGP)</th></tr><tr><td><strong>Project Kickoff</strong> — Upon contract signing and receipt of database access</td><td style="text-align:right">30%</td><td class="price">150,000</td></tr><tr><td><strong>Mid-Project Delivery</strong> — Accounting core + data migration complete (Week 7)</td><td style="text-align:right">35%</td><td class="price">175,000</td></tr><tr><td><strong>Final Delivery</strong> — All phases complete, UAT signed off, go-live executed</td><td style="text-align:right">35%</td><td class="price">175,000</td></tr></table></div><table style="margin-top:10px;"><tr><td style="border:none;padding-left:0;"><strong>Payment method:</strong> Bank transfer within 7 business days of milestone invoice</td></tr></table></section>
+<section><h2>7. What We Need From PlanetX</h2><ul class="features"><li>Full Odoo PostgreSQL database access (read-only credentials sufficient)</li><li>List of all 72 Odoo modules with confirmation of actively used vs. dormant</li><li>Current Odoo server access for reference during migration (read-only UI)</li><li>Chart of Accounts — desired structure, planned changes, auditor requirements</li><li>List of all users with departments, roles, and access level requirements</li><li>Sample printed documents for Print Format reference</li><li>Designated UAT lead (1–2 hours/day, Weeks 4–14)</li><li>Tax documentation — templates, rates, account mappings, ETA requirements</li><li>Server/hosting decision — Frappe Cloud or self-hosted Linux server</li><li>Domain/DNS access for production ERPNext URL configuration</li></ul></section>
+<section><h2>8. Terms &amp; Conditions</h2><ul class="features"><li>This proposal is valid for <strong>30 days</strong> from the date of issuance (June 2026).</li><li>The scope of work is limited to deliverables explicitly listed in Section 2. Any work outside this scope requires a separate change request.</li><li>Construction, tender, payroll engine, attendance engine, BOM explosion, and bank guarantee letters are <strong>explicitly excluded</strong> from Phase 1 (Section 2.3).</li><li>The 16-week (4-month) timeline is an estimate based on prompt client material provision (Section 7). Client-side delays extend the timeline proportionally.</li><li>Data migration is performed on a best-effort basis. Nodatx guarantees trial balance match, AR/AP aging match, and stock valuation match at go-live. Historical closed-period data is migrated at summary level.</li><li>Post-go-live bug fixes related to delivered scope are covered at no cost for 2 weeks after go-live. Thereafter, support is governed by the retainer or billed hourly.</li><li>Third-party marketplace app licenses (e.g., PDC Cheque Management) are the responsibility of PlanetX. Nodatx facilitates procurement and configuration; licensing costs are separate.</li><li>Both parties agree to a <strong>scope freeze</strong> during the 16-week delivery period. New feature requests will be documented for Phase 2.</li><li>Either party may terminate with 14 days written notice. Upon termination, Nodatx delivers all completed work. Payment is due for all completed milestones.</li><li>Nodatx retains IP rights to any custom Frappe apps developed. PlanetX receives a perpetual, royalty-free license to use them.</li><li>Confidentiality: Nodatx treats all PlanetX business data as confidential. No data shared with third parties.</li><li>Force majeure: Neither party is liable for delays caused by circumstances beyond reasonable control.</li></ul></section>
+<section style="background: #fefefe;"><h2>9. Acceptance</h2><p>This proposal, when signed below, constitutes a binding agreement for the services described herein.</p><table class="sig-table"><tr><td><strong>PlanetX (Client)</strong><br><br>Signature: ______________________________<br><br>Name: ________________________________<br><br>Title: _________________________________<br><br>Date: _________________________________<br><br>Company Stamp:</td><td><strong>Nodatx (Service Provider)</strong><br><br>Signature: ______________________________<br><br>Name: ________________________________<br><br>Title: _________________________________<br><br>Date: _________________________________</td></tr></table></section>
 <footer><p>Odoo → ERPNext Migration Proposal for PlanetX &nbsp;|&nbsp; Prepared by Nodatx &nbsp;|&nbsp; June 2026 &nbsp;|&nbsp; Ref: PX-ERP-MIG-2026-001 &nbsp;|&nbsp; Confidential</p></footer>
-
-</div>
-</div>
-
-<script>
-(function(){
-  var gate = document.getElementById('gate');
-  var content = document.getElementById('content');
-  var input = document.getElementById('pw');
-  var err = document.getElementById('err');
-  var tries = 0;
-
-  input.addEventListener('keyup', function(e){
-    if(e.key === 'Enter'){
-      if(input.value === '1234'){
-        gate.style.display = 'none';
-        content.style.display = 'block';
-        input.blur();
-      } else {
-        tries++;
-        err.style.display = 'block';
-        input.value = '';
-        if(tries >= 5){ input.disabled = true; err.textContent = 'Too many attempts. Please contact Nodatx.'; }
-      }
-    }
-  });
-})();
-</script>
-
+</div></div>
+<script>(function(){var g=document.getElementById('gate');var c=document.getElementById('content');var i=document.getElementById('pw');var e=document.getElementById('err');var t=0;i.addEventListener('keyup',function(ev){if(ev.key==='Enter'){if(i.value==='1234'){g.style.display='none';c.style.display='block';i.blur()}else{t++;e.style.display='block';i.value='';if(t>=5){i.disabled=true;e.textContent='Too many attempts. Please contact Nodatx.'}}}})})();</script>
 </body>
 </html>
