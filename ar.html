@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>عرض آمن – PlanetX | Nodatx</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&display=swap');
+  :root { --primary: #9744DB; --secondary: #55009B; --dark: #0a0a0f; --gray: #f5f5f5; --text: #333; --white: #ffffff; --accent: #C5A9FF; --yes: #10b981; --no: #ef4444; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Tajawal', system-ui, sans-serif; color: var(--text); line-height: 1.9; background: #fafafa; direction: rtl; text-align: right; }
+  .page { max-width: 1000px; margin: 0 auto; background: var(--white); box-shadow: 0 0 40px rgba(0,0,0,0.08); }
+
+  /* ──Password Gate── */
+  #gate { position: fixed; inset: 0; background: linear-gradient(135deg, var(--dark) 0%, #55009B 60%, var(--primary) 100%); display: flex; align-items: center; justify-content: center; z-index: 9999; text-align: center; }
+  #gate .box { background: rgba(255,255,255,0.08); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.15); border-radius: 16px; padding: 50px 40px; max-width: 380px; }
+  #gate h2 { color: white; font-size: 1.3em; margin-bottom: 6px; border: none; letter-spacing: 1px; }
+  #gate p { color: rgba(255,255,255,0.6); font-size: 0.85em; margin-bottom: 20px; }
+  #gate input { width: 100%; padding: 14px 18px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.1); color: white; font-size: 1.1em; text-align: center; letter-spacing: 6px; outline: none; font-family: 'Tajawal', sans-serif; direction: ltr; }
+  #gate input:focus { border-color: var(--accent); }
+  #gate .err { color: #ff6b6b; font-size: 0.82em; margin-top: 10px; display: none; }
+  #gate .logo { color: white; font-size: 0.85em; letter-spacing: 4px; opacity: 0.4; margin-bottom: 20px; }
+  #content { display: none; }
+
+  .cover { background: linear-gradient(135deg, var(--dark) 0%, #55009B 60%, var(--primary) 100%); color: white; padding: 80px 60px; text-align: center; position: relative; overflow: hidden; }
+  .cover::before { content: ''; position: absolute; inset: 0; background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"); }
+  .cover h1 { font-size: 2.8em; font-weight: 800; letter-spacing: 2px; margin-bottom: 10px; position: relative; }
+  .cover h1 span { color: var(--accent); }
+  .cover .subtitle { font-size: 1.2em; opacity: 0.85; margin-bottom: 40px; position: relative; }
+  .cover .meta { font-size: 0.95em; opacity: 0.7; position: relative; line-height: 2.2; }
+  .cover .logo-area { margin-bottom: 30px; position: relative; }
+  .cover .logo-placeholder { display: inline-block; border: 2px solid rgba(255,255,255,0.3); padding: 15px 40px; font-size: 1.6em; font-weight: 700; letter-spacing: 5px; }
+
+  section { padding: 50px 60px; }
+  section:nth-child(even) { background: var(--gray); }
+  h2 { font-size: 1.7em; color: var(--dark); border-bottom: 3px solid var(--primary); padding-bottom: 12px; margin-bottom: 30px; }
+  h3 { font-size: 1.15em; color: var(--dark); margin: 25px 0 12px; }
+
+  table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 0.92em; }
+  th, td { padding: 12px 16px; text-align: right; border-bottom: 1px solid #e0e0e0; }
+  th { background: var(--dark); color: white; font-weight: 600; font-size: 0.85em; }
+  tr:hover td { background: #f8f0ff; }
+  .price { font-weight: 700; color: var(--primary); white-space: nowrap; text-align: left; }
+
+  .deliverable-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px 30px; }
+  .deliverable-grid .item { background: var(--white); border-right: 4px solid var(--primary); border-left: none; padding: 14px 18px; border-radius: 6px 0 0 6px; }
+  .deliverable-grid .item strong { display: block; color: var(--dark); margin-bottom: 4px; }
+  .deliverable-grid .item span { font-size: 0.9em; color: #666; }
+  .features { list-style: none; }
+  .features li { padding: 8px 24px 8px 0; position: relative; }
+  .features li::before { content: '✓'; position: absolute; right: 0; color: var(--primary); font-weight: bold; }
+
+  .pricing-box { background: linear-gradient(135deg, var(--dark), #55009B); color: white; border-radius: 12px; padding: 40px; text-align: center; margin: 30px 0; }
+  .pricing-box .total { font-size: 3.5em; font-weight: 800; }
+  .pricing-box .total small { font-size: 0.5em; opacity: 0.7; }
+  .pricing-box .note { font-size: 0.95em; opacity: 0.7; margin-top: 8px; }
+  .pricing-box .maintenance { background: rgba(255,255,255,0.1); border-radius: 8px; padding: 16px; margin-top: 20px; font-size: 0.95em; text-align: right; }
+
+  .timeline { position: relative; padding-right: 30px; padding-left: 0; }
+  .timeline::before { content: ''; position: absolute; right: 8px; left: auto; top: 0; bottom: 0; width: 2px; background: var(--primary); }
+  .timeline .phase { margin-bottom: 28px; position: relative; }
+  .timeline .phase::before { content: ''; position: absolute; right: -26px; left: auto; top: 6px; width: 14px; height: 14px; border-radius: 50%; background: var(--primary); border: 3px solid white; box-shadow: 0 0 0 2px var(--primary); }
+  .timeline .phase strong { display: block; color: var(--dark); }
+  .timeline .phase span { font-size: 0.9em; color: #888; display: block; margin-top: 2px; }
+  .timeline .phase .tasks { font-size: 0.82em; color: #999; margin-top: 4px; }
+
+  footer { background: var(--dark); color: #999; text-align: center; padding: 30px; font-size: 0.85em; }
+
+  .scope-box { border: 2px solid var(--yes); border-radius: 8px; padding: 16px 20px; margin: 10px 0; background: #f0fdf4; text-align: right; }
+  .scope-box.out { border-color: var(--no); background: #fef2f2; }
+  .scope-box h4 { color: var(--dark); margin-bottom: 6px; }
+  .badge { display: inline-block; padding: 2px 10px; border-radius: 12px; font-size: 0.78em; font-weight: 600; }
+  .badge-in { background: #d1fae5; color: #065f46; }
+  .badge-out { background: #fee2e2; color: #991b1b; }
+  .warning-callout { background: #fffbeb; border-right: 4px solid #f59e0b; border-left: none; padding: 14px 18px; margin: 16px 0; border-radius: 6px 0 0 6px; font-size: 0.9em; }
+
+  @media (max-width: 768px) { .cover { padding: 50px 30px; } .cover h1 { font-size: 1.8em; } section { padding: 30px 25px; } .deliverable-grid { grid-template-columns: 1fr; } .pricing-box .total { font-size: 2.5em; } }
+  @media print { body { background: white; } .page { box-shadow: none; max-width: 100%; } section { break-inside: avoid; } }
+</style>
+</head>
+<body>
+
+<!--═══Password Gate═══-->
+<div id="gate">
+  <div class="box">
+    <div class="logo">مستند سري</div>
+    <h2>أدخل رمز المرور</h2>
+    <p>هذا المستند يحتوي على معلومات سرية</p>
+    <input type="password" id="pw" placeholder="••••" maxlength="20" autofocus>
+    <div class="err" id="err">رمز المرور غير صحيح</div>
+  </div>
+</div>
+
+<!--═══Content═══-->
+<div id="content">
+<div class="page">
+
+<div class="cover">
+  <div class="logo-area"><div class="logo-placeholder">NODA<span style="color:var(--accent)">TX</span></div></div>
+  <h1>هجرة Odoo → ERPNext<br><span>عرض فني ومالي</span></h1>
+  <p class="subtitle">انتقال سلس من Odoo Community إلى ERPNext — المحاسبة والمشتريات والمخازن والمبيعات</p>
+  <p class="meta">مُقدم إلى: <strong>PlanetX</strong><br>التاريخ: <strong>يونيو 2026</strong><br>مقدم من: <strong>Nodatx</strong><br>رقم المرجع: <strong>PX-ERP-MIG-2026-001</strong></p>
+</div>
+
+<section>
+  <h2>١. الملخص التنفيذي</h2>
+  <p>تعمل شركة PlanetX حاليًا على <strong>نظام Odoo Community Edition</strong> مع ٧٢ موديول مخصص. مع اقتراب نهاية اشتراك Odoo في سنته الأخيرة، تقدم Nodatx عرضًا مركّزًا وعالي التأثير للهجرة إلى <strong>ERPNext</strong> — أقوى نظام ERP مفتوح المصدر في العالم — لتغطية العمليات الأساسية في المحاسبة والمشتريات والمخازن والمبيعات وإدارة علاقات العملاء.</p>
+  <p style="margin-top:12px;">يعكس هذا العرض <strong>نطاق عمل محدد بعناية</strong>. بعد تحليل فني شامل، تم الاتفاق على استبعاد موديولات المقاولات والمناقصات من هذه المرحلة، حيث تتطلب مستوى من التطوير المخصص يُفضل معالجته كمشروع منفصل في المرحلة الثانية. كما تم تأجيل محرك الرواتب والحضور والانصراف المخصص لتسريع التشغيل على الأنظمة المالية والتشغيلية الأساسية.</p>
+  <p style="margin-top:12px;"><strong>ما ستحصل عليه:</strong> نظام ERPNext متكامل مع جميع بياناتك المحاسبية التاريخية والعمليات المفتوحة والمخازن والمشتريات والمبيعات — يتم تسليمه خلال ١٦ أسبوعًا تقريبًا (٤ أشهر).</p>
+  <div class="scope-box" style="margin-top:20px;"><h4><span class="badge badge-in">مشمول</span> &nbsp; المحاسبة · المشتريات · المخازن · المبيعات · CRM · الصلاحيات · التقارير</h4></div>
+  <div class="scope-box out"><h4><span class="badge badge-out">مؤجل</span> &nbsp; المقاولات · المناقصات · محرك الرواتب · محرك الحضور · تفجير BOM على عروض البيع · خطابات الضمان</h4></div>
+</section>
+
+<section>
+  <h2>٢. نطاق العمل</h2>
+  <p>يغطي هذا العرض الهجرة الكاملة لـ <strong>٤٥ موديول من Odoo</strong> عبر ستة مجالات وظيفية. أما الموديولات المتبقية (٢٧ موديول) فهي مستبعدة صراحةً من هذه المرحلة وموثقة للعمل المستقبلي.</p>
+  <h3>٢.١ — المخرجات الأساسية</h3>
+  <div class="deliverable-grid">
+    <div class="item"><strong>١. إعداد نظام ERPNext</strong><span>تثبيت ERPNext v16 كامل، إعداد Frappe Framework، بيئة إنتاجية مع استراتيجية نسخ احتياطي، SSL، ودمج البريد الإلكتروني.</span></div>
+    <div class="item"><strong>٢. هجرة دليل الحسابات</strong><span>إعادة تصميم وترحيل دليل الحسابات من Odoo إلى هيكل ERPNext. جميع الحسابات مربوطة ومدققة ومتوازنة.</span></div>
+    <div class="item"><strong>٣. هجرة البيانات الرئيسية</strong><span>العملاء، الموردين، المنتجات (مع المتغيرات ووحدات القياس)، الموظفين، المستخدمين، المخازن، قوائم الأسعار، قوالب الضرائب.</span></div>
+    <div class="item"><strong>٤. هجرة أساسيات المحاسبة</strong><span>هجرة كاملة للأستاذ العام والمدينين والدائنين. جميع الفواتير وسندات الدفع المفتوحة والبنود غير المسوّاة.</span></div>
+    <div class="item"><strong>٥. نظام إدارة الشيكات</strong><span>دورة حياة الشيكات المؤجلة — استلام، إصدار، إيداع، تحصيل، ارتجاع، رفض. مبني على تطبيق احترافي من سوق Frappe.</span></div>
+    <div class="item"><strong>٦. المشتريات والمخازن</strong><span>طلبات الشراء، أوامر الشراء (مع خصم مزدوج)، الأرصدة الافتتاحية، التحويلات بين المخازن، قيود الوصول.</span></div>
+    <div class="item"><strong>٧. عمليات المبيعات</strong><span>أوامر البيع (مع خصم إجمالي)، موقع التسليم لكل سطر، فلترة قوائم الأسعار، نماذج طباعة مخصصة.</span></div>
+    <div class="item"><strong>٨. CRM والتحكم في الصلاحيات</strong><span>إدارة العملاء المحتملين، تتبع الفرص، صلاحيات على مستوى السجلات والحقول، قيود فرق المبيعات.</span></div>
+    <div class="item"><strong>٩. التقارير ونماذج الطباعة</strong><span>التدفقات النقدية، الموازنة، الأستاذ العام، سندات الدفع/القبض، نماذج أوامر الشراء، قوالب الفواتير. جميعها قابلة للتصدير XLSX.</span></div>
+    <div class="item"><strong>١٠. التحقق من البيانات والتشغيل</strong><span>مطابقة ميزان المراجعة، أعمار الديون، تقييم المخزون، اختبار قبول المستخدم، تدريب ٥٠+ مستخدم، تشغيل متوازي.</span></div>
+  </div>
+  <h3>٢.٢ — شوائب إضافية</h3>
+  <ul class="features">
+    <li>دورة العهدة النثرية: طلب ← اعتماد ← صرف ← تسوية</li>
+    <li>خصم مزدوج على أوامر الشراء (نسبة + مبلغ ثابت)</li>
+    <li>سير عمل موافقة متعدد المراحل على أوامر البيع</li>
+    <li>تحويل بين المخازن مع موقع عبور وموافقة</li>
+    <li>إعادة تشكيل ٢٤ مجموعة صلاحيات مخصصة كأدوار ERPNext</li>
+    <li>محرك تقارير XLSX (مهاجر من Odoo OCA إلى Frappe xlsxutils)</li>
+    <li>لوحة معلومات التدفقات النقدية ومناظر كانبان لأرصدة اليوميات</li>
+    <li>إدارة سلف وقروض الموظفين (طلب، موافقة، أقساط، دمج مع كشف الراتب)</li>
+    <li>تتبع عهد الموظفين (أصول الشركة المسندة للموظفين)</li>
+    <li>حساب تلقائي لعمر الموظف وإشعارات انتهاء العقود</li>
+    <li>الحفاظ على جميع البيانات العربية مع معالجة صحيحة لـ Unicode</li>
+  </ul>
+</section>
+
+<section>
+  <h2>٢.٣ — خارج النطاق صراحةً (المرحلة الأولى)</h2>
+  <p>الموديولات التالية مؤجلة للمرحلة الثانية أو تبقى على نظام Odoo.</p>
+  <div class="scope-box out" style="margin-top:16px;"><h4>موديولات مؤجلة (٢٧ موديول)</h4></div>
+  <table>
+    <tr><th>الفئة</th><th>الموديولات</th><th>السبب</th></tr>
+    <tr><td><strong>إدارة المقاولات</strong></td><td>بيانات المقاولات الرئيسية، المقاولات الجديدة، ملحقات المقاولات، تعديل وتخصيص ومراجعة شيتات المهندسين، تحديث فواتير المقاولات، التكاليف الخارجية، بدلات العقود، توزيع تحليلي للمخزون</td><td>تتطلب بناء تطبيق Frappe مخصص. منطق عمل معقد. الأفضل كمشروع مستقل في المرحلة الثانية.</td></tr>
+    <tr><td><strong>إدارة المناقصات</strong></td><td>المناقصات، ربط المناقصات بالمقاولات، تخصيص المناقصات، CRM المناقصات، صلاحيات المناقصات</td><td>لا يوجد أي دعم في منظومة ERPNext. تحتاج بناء كامل من الصفر.</td></tr>
+    <tr><td><strong>محرك الرواتب</strong></td><td>فئات قواعد الراتب، الحوافز، الخصومات، تقرير الرواتب، محاسبة القروض، ملحق الرواتب</td><td>ERPNext لديه نظام رواتب قوي. الموديولات المخصصة تحتاج إعادة تصميم دقيقة.</td></tr>
+    <tr><td><strong>محرك الحضور والانصراف</strong></td><td>كشوف الحضور الشهرية، كشوف Surgi، تخصيص كشوف الحضور، كشوف مجمعة، دمج ZKTeco</td><td>كشوف الحضور مع محرك الغرامات والعمل الإضافي تحتاج بناء مخصص.</td></tr>
+    <tr><td><strong>أخرى مؤجلة</strong></td><td>تفجير BOM على أوامر البيع، خطابات الضمان البنكية، العروض التجارية (نسخة كاملة)</td><td>تفجير BOM: منطق فريد. خطابات الضمان: تطبيق مستقل. العروض التجارية: الأساسية مشمولة.</td></tr>
+  </table>
+</section>
+
+<section>
+  <h2>٣. التقنيات والأدوات</h2>
+  <table>
+    <tr><th>الفئة</th><th>الأداة / التقنية</th><th>الغرض</th></tr>
+    <tr><td>منصة ERP</td><td>ERPNext v16</td><td>نظام ERP الأساسي</td></tr>
+    <tr><td>Framework</td><td>Frappe Framework v16</td><td>محرك DocType، سير العمل، REST API، الصلاحيات</td></tr>
+    <tr><td>قاعدة البيانات</td><td>MariaDB 10.6+</td><td>قاعدة بيانات ERPNext (مهاجرة من Odoo PostgreSQL)</td></tr>
+    <tr><td>إدارة الشيكات</td><td>PDC Cheque Management (سوق Frappe)</td><td>دورة حياة الشيكات المؤجلة</td></tr>
+    <tr><td>الاستضافة</td><td>Frappe Cloud أو سيرفر Linux</td><td>بيئة إنتاج + اختبار + تطوير</td></tr>
+    <tr><td>هجرة البيانات</td><td>Python (pandas, frappe.client)</td><td>تحويل Odoo PostgreSQL → ERPNext MariaDB</td></tr>
+    <tr><td>التقارير</td><td>Frappe Script Reports + xlsxutils</td><td>تقارير مخصصة وتصدير Excel</td></tr>
+    <tr><td>نماذج الطباعة</td><td>Frappe Jinja/HTML Print Formats</td><td>سندات، أوامر شراء، قوالب فواتير</td></tr>
+  </table>
+</section>
+
+<section>
+  <h2>٤. الجدول الزمني للمشروع</h2>
+  <div class="timeline">
+    <div class="phase"><strong>الأسبوع ١–٣: التأسيس</strong><span>نهاية الأسبوع الثالث</span><div class="tasks">إعداد السيرفر · إعادة تصميم دليل الحسابات · تصميم المستخدمين والأدوار · هجرة البيانات الرئيسية · إعداد نماذج الطباعة</div></div>
+    <div class="phase"><strong>الأسبوع ٤–٧: المحاسبة الأساسية</strong><span>نهاية الأسبوع السابع</span><div class="tasks">هجرة الأستاذ العام والمدينين والدائنين · الفواتير المفتوحة · سندات الدفع · التسوية البنكية · نظام الشيكات · العهدة النثرية · تقارير التدفقات النقدية · التحقق من ميزان المراجعة</div></div>
+    <div class="phase"><strong>الأسبوع ٨–١١: المشتريات والمخازن والمبيعات</strong><span>نهاية الأسبوع الحادي عشر</span><div class="tasks">أوامر الشراء · الأرصدة الافتتاحية · إعداد المخازن · التحويلات · طلبات المواد · أوامر البيع · محرك الخصومات · قوائم الأسعار · CRM · تقارير الفواتير · الانتهاء من نماذج الطباعة</div></div>
+    <div class="phase"><strong>الأسبوع ١٢–١٤: الاختبار والتدريب والتشغيل المتوازي</strong><span>نهاية الأسبوع الرابع عشر</span><div class="tasks">اختبار التكامل الشامل · مطابقة ميزان المراجعة · مطابقة أعمار الديون · مطابقة تقييم المخزون · جلسات UAT · تدريب ٥٠+ مستخدم · تشغيل متوازي (أسبوعين)</div></div>
+    <div class="phase"><strong>الأسبوع ١٥–١٦: التشغيل النهائي والتسليم</strong><span>نهاية الأسبوع السادس عشر</span><div class="tasks">التشغيل الإنتاجي · مزامنة نهائية · دعم طارئ · وثائق التسليم · مراقبة ما بعد التشغيل · فترة إصلاح أخطاء (أسبوعين) · جلسة نقل المعرفة</div></div>
+  </div>
+  <p style="margin-top:20px; font-size:0.95em; color:#888;"><strong>المدة الإجمالية:</strong> <strong>١٦ أسبوعًا (٤ أشهر)</strong> من بدء المشروع واستلام جميع المواد المطلوبة.</p>
+  <div class="warning-callout"><strong>اعتمادية هامة:</strong> يفترض هذا الجدول أن PlanetX ستوفر <strong>شخصًا مخصصًا للتواصل</strong> لاختبار قبول المستخدم أثناء التطوير (الأسابيع ٤–١٤)، وأن جميع المواد المطلوبة ستُوفَّر خلال الأسبوع الأول. أي تأخير من جانب العميل سيؤدي إلى تمديد الجدول الزمني.</div>
+</section>
+
+<section>
+  <h2>٥. الاستثمار</h2>
+  <table>
+    <tr><th>المخرج</th><th style="text-align:left">التكلفة (جنيه مصري)</th></tr>
+    <tr><td>إعداد نظام ERPNext وهجرة دليل الحسابات</td><td class="price">٦٠،٠٠٠</td></tr>
+    <tr><td>هجرة البيانات الرئيسية</td><td class="price">٧٠،٠٠٠</td></tr>
+    <tr><td>أساسيات المحاسبة</td><td class="price">٨٠،٠٠٠</td></tr>
+    <tr><td>نظام إدارة الشيكات</td><td class="price">٥٥،٠٠٠</td></tr>
+    <tr><td>المشتريات والمخازن</td><td class="price">٦٥،٠٠٠</td></tr>
+    <tr><td>عمليات المبيعات</td><td class="price">٦٠،٠٠٠</td></tr>
+    <tr><td>التحكم في الصلاحيات والأمان</td><td class="price">٣٠،٠٠٠</td></tr>
+    <tr><td>التقارير ونماذج الطباعة</td><td class="price">٣٥،٠٠٠</td></tr>
+    <tr><td>الاختبار وتدريب المستخدمين ودعم التشغيل</td><td class="price">٤٥،٠٠٠</td></tr>
+  </table>
+  <div class="pricing-box">
+    <div class="total"><small>جنيه مصري</small> ٥٠٠،٠٠٠</div>
+    <div class="note">سعر ثابت — شامل جميع المخرجات المذكورة. بدون رسوم خفية.</div>
+    <div class="maintenance"><strong>دعم ما بعد التشغيل (إضافة اختيارية)</strong><br><br>عقد شهري: <strong>٢٠،٠٠٠ جنيه/شهر</strong> (حد أدنى ٣ أشهر)<br>يشمل: إصلاح الأخطاء، تعديلات بسيطة، مراقبة الأداء، دعم المستخدمين، تحديثات الأمان.<br>أي تغييرات خارج نطاق المرحلة الأولى تُحاسب بـ <strong>١،٢٠٠ جنيه/ساعة</strong>.</div>
+  </div>
+</section>
+
+<section>
+  <h2>٦. شروط الدفع</h2>
+  <table>
+    <tr><th>المرحلة</th><th style="text-align:left">النسبة</th><th style="text-align:left">المبلغ (جنيه مصري)</th></tr>
+    <tr><td><strong>بدء المشروع</strong> — عند توقيع العقد واستلام الوصول لقاعدة البيانات</td><td style="text-align:left">٣٠٪</td><td class="price">١٥٠،٠٠٠</td></tr>
+    <tr><td><strong>التسليم النصفي</strong> — اكتمال المحاسبة الأساسية وهجرة البيانات (الأسبوع السابع)</td><td style="text-align:left">٣٥٪</td><td class="price">١٧٥،٠٠٠</td></tr>
+    <tr><td><strong>التسليم النهائي</strong> — اكتمال جميع المراحل، توقيع اختبار القبول، التشغيل النهائي</td><td style="text-align:left">٣٥٪</td><td class="price">١٧٥،٠٠٠</td></tr>
+  </table>
+  <table style="margin-top:10px;"><tr><td style="border:none;padding-right:0;"><strong>طريقة الدفع:</strong> تحويل بنكي خلال ٧ أيام عمل من تاريخ فاتورة المرحلة</td></tr></table>
+</section>
+
+<section>
+  <h2>٧. ما نحتاجه من PlanetX</h2>
+  <ul class="features">
+    <li>وصول كامل لقاعدة بيانات Odoo PostgreSQL (صلاحية قراءة فقط كافية)</li>
+    <li>قائمة بجميع الموديولات الـ ٧٢ مع تأكيد المستخدم فعليًا والمثبت غير النشط</li>
+    <li>وصول لخادم Odoo الحالي للمراجعة أثناء الهجرة (UI للقراءة فقط)</li>
+    <li>دليل الحسابات — تأكيد الهيكل المطلوب وأي تغييرات ومتطلبات المدقق المالي</li>
+    <li>قائمة بجميع المستخدمين مع إداراتهم وأدوارهم ومتطلبات الصلاحيات</li>
+    <li>عينات من المستندات المطبوعة كمرجع لنماذج الطباعة</li>
+    <li>شخص مخصص لاختبار قبول المستخدم أثناء التطوير (ساعة-ساعتين يوميًا)</li>
+    <li>وثائق الضرائب — القوالب والنسب وربط الحسابات ومتطلبات مصلحة الضرائب</li>
+    <li>قرار الاستضافة — Frappe Cloud أو سيرفر Linux مُدار ذاتيًا</li>
+    <li>وصول DNS/Domain لإعداد رابط ERPNext الإنتاجي</li>
+  </ul>
+</section>
+
+<section>
+  <h2>٨. الشروط والأحكام</h2>
+  <ul class="features">
+    <li>هذا العرض ساري المفعول لمدة <strong>٣٠ يومًا</strong> من تاريخ الإصدار (يونيو ٢٠٢٦).</li>
+    <li>نطاق العمل يقتصر على المخرجات المذكورة صراحةً في القسم ٢. أي عمل خارج هذا النطاق يتطلب طلب تغيير منفصل.</li>
+    <li>موديولات المقاولات والمناقصات والرواتب ومحرك الحضور وتفجير BOM وخطابات الضمان <strong>مستبعدة صراحةً</strong> من المرحلة الأولى (القسم ٢.٣).</li>
+    <li>الجدول الزمني (١٦ أسبوعًا / ٤ أشهر) تقديري ومبني على توفير العميل للمواد. تأخير العميل يمدد الجدول ولا يُعتبر إخلالاً.</li>
+    <li>هجرة البيانات بأقصى جهد. نضمن مطابقة ميزان المراجعة وأعمار الديون وتقييم المخزون. البيانات التاريخية على مستوى ملخص.</li>
+    <li>إصلاحات الأخطاء بعد التشغيل مشمولة لمدة أسبوعين. بعدها يخضع الدعم لعقد الصيانة أو المحاسبة بالساعة.</li>
+    <li>تراخيص تطبيقات الطرف الثالث (مثل PDC Cheque) مسؤولية PlanetX. Nodatx تُسهّل الشراء والتكوين فقط.</li>
+    <li>يتفق الطرفان على <strong>تثبيت النطاق</strong> خلال فترة التسليم. الطلبات الجديدة توثَّق للمرحلة الثانية.</li>
+    <li>يجوز لأي طرف إنهاء العقد بإشعار ١٤ يومًا. عند الإنهاء، تسليم جميع الأعمال المكتملة والدفع مستحق للمراحل المكتملة.</li>
+    <li>Nodatx تحتفظ بحقوق الملكية الفكرية للتطبيقات المخصصة. PlanetX تحصل على ترخيص دائم للاستخدام.</li>
+    <li>السرية: بيانات PlanetX تعامل كمعلومات سرية. لا مشاركة مع أطراف خارجية.</li>
+    <li>القوة القاهرة: لا مسؤولية عن التأخير الناتج عن ظروف خارجة عن السيطرة.</li>
+  </ul>
+</section>
+
+<section style="background: #fefefe;">
+  <h2>٩. القبول</h2>
+  <p>يشكل هذا العرض، عند توقيعه أدناه، اتفاقية ملزمة للخدمات الموصوفة فيه.</p>
+  <table style="margin-top:30px;">
+    <tr><td style="width:50%; padding:20px; border:1px solid #e0e0e0; vertical-align:top;"><strong>PlanetX (العميل)</strong><br><br>التوقيع: ______________________________<br><br>الاسم: ________________________________<br><br>المسمى الوظيفي: _________________________<br><br>التاريخ: _________________________________<br><br>ختم الشركة:</td><td style="width:50%; padding:20px; border:1px solid #e0e0e0; vertical-align:top;"><strong>Nodatx (مقدم الخدمة)</strong><br><br>التوقيع: ______________________________<br><br>الاسم: ________________________________<br><br>المسمى الوظيفي: _________________________<br><br>التاريخ: _________________________________</td></tr>
+  </table>
+</section>
+
+<footer><p>عرض هجرة Odoo → ERPNext لشركة PlanetX &nbsp;|&nbsp; مقدم من Nodatx &nbsp;|&nbsp; يونيو ٢٠٢٦ &nbsp;|&nbsp; المرجع: PX-ERP-MIG-2026-001 &nbsp;|&nbsp; سري</p></footer>
+
+</div>
+</div>
+
+<script>
+(function(){
+  var gate = document.getElementById('gate');
+  var content = document.getElementById('content');
+  var input = document.getElementById('pw');
+  var err = document.getElementById('err');
+  var tries = 0;
+  input.addEventListener('keyup', function(e){
+    if(e.key === 'Enter'){
+      if(input.value === '1234'){
+        gate.style.display = 'none';
+        content.style.display = 'block';
+        input.blur();
+      } else {
+        tries++;
+        err.style.display = 'block';
+        input.value = '';
+        if(tries >= 5){ input.disabled = true; err.textContent = 'محاولات كثيرة. برجاء التواصل مع Nodatx.'; }
+      }
+    }
+  });
+})();
+</script>
+
+</body>
+</html>
